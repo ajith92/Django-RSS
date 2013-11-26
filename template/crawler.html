@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+ <head>
+  <title>CRAWLER</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+   $(document).ready(function() {
+    $("button").click(function() {
+     alert("Clicked me");       
+     var urlLink = $('#url').val();
+     if( urlLink== null || urlLink == "" ) {}
+     else {
+      alert(urlLink);
+      var data = { URL : urlLink };
+      var args = { type : "GET", url : "/crawler/", data : data, success : function (result) { alert("Sucess"); } ,  
+                   error:function (xhr, ajaxOptions, thrownError, request, error) {
+						     alert('xrs.status = ' + xhr.status + '\n' + 
+            					           'thrown error = ' + thrownError + '\n' +
+            					     	   'xhr.statusText = '  + xhr.statusText + '\n' +
+            						   'request = ' + request + '\n' +
+            						   'error = ' + error); }  
+      }
+      $.ajax(args);
+     }
+    });
+   });
+  </script>
+
+ </head>
+
+ <body>
+   Enter the Url of the feed : <input type="text" id="url"><br>
+   <button>Submit</button>
+ </body>
